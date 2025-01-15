@@ -1,14 +1,24 @@
 const mongoose = require('mongoose');
 
-const TodoSchema = new mongoose.Schema({
-    task: {
-        type: String,
-        required: true,
+const TasksSchema = mongoose.Schema(
+    {
+        email: {
+            type: String,
+            required: [true, "Enter Email Field!!"],
+        },
+        task: {
+            type: String,
+            required: [true, "Enter Task Field!!"],
+        },
+        stat: {
+            type: Boolean, 
+            default: false 
+        }
     },
-    completed: {
-        type: Boolean,
-        default: false,
-    },
-});
+    {
+        timestamp: true,
+    }
+);
 
-module.exports = mongoose.model('Todo', TodoSchema);
+const Task = mongoose.model("tasks", TasksSchema);
+module.exports = Task;
