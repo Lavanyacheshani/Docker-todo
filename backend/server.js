@@ -7,10 +7,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb://mongo:27017/todo-app', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() => console.log('MongoDB connected')).catch(err => console.error(err));
+mongoose.connect('mongodb://mongo:27017/dbname');
+
 
 app.get('/todos', async (req, res) => {
     const todos = await Todo.find();
